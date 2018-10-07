@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="searchFilter" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" type="text/css" href="app.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+ <script src="angular.min.js"></script>
+</head>
+<body>
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <div ng-controller="searchFilter.ctrl">
+    <div class="container">
+        <div class="search-wrapper">
+              <div class="search-input">
+                <label for="fistname">First Name</label>
+                <input type="text" class="" ng-model="creteria.first_name">
+              </div>
+              <div class="search-input">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="" ng-model="creteria.last_name">
+              </div>
+              <div class="search-button">
+                  <button class="btn btn-success" type="submit" ng-click="showDetails()">
+                    <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Search
+                  </button>
+              </div> 
+        </div>
+     </div>
+    <div class="searching-message" ng-show="isShowProgressbar">Please wait. Searching results...</div>
+    <div id="myprogress" class="myprogress" ng-show="isShowProgressbar">
+      <div id="mybar" class="mybar progress-bar-animated progress-bar-striped">0%</div>
+    </div>                   
+  <div class="fulldetails">
+    <ul>
+      <li ng-repeat="details in fullDetails| filter:creteria">
+        <span class="">{{details.list_no}}</span>
+        <span class="">{{details.exam_no}}</span>
+        <span>
+          <span class="first-name">{{details.first_name}}</span>
+          <span class="last-name">{{details.last_name}}</span>
+        </span>
+        <span class="">{{details.list_agency_desc}}</span>
+        <span class="">{{details.list_title_desc}}</span>
+        <span class="">{{details.published_date | date:'MM/dd/yyyy'}}</span>
+      </li>
+    </ul>
+  </div> 
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
